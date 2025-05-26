@@ -2,149 +2,126 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>The Evelyn Code - Chapter II</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Evelyn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body {
       margin: 0;
-      background-color: #000;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: #eee;
-      font-family: 'Segoe UI', sans-serif;
+      padding: 2rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #111;
+      line-height: 1.6;
     }
 
-    .image-wrapper {
-      position: relative;
-      width: 90vw;
+    h1, h2, h3 {
+      font-weight: 400;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.2em;
+    }
+
+    h3 {
+      font-weight: 300;
+      color: #666;
+    }
+
+    p {
       max-width: 700px;
+      margin: 2em auto;
+      text-align: center;
     }
 
-    .evelyn-img {
-      width: 100%;
+    img {
+      display: block;
+      max-width: 500px;
+      height: auto;
+      margin: 2em auto;
       border-radius: 10px;
-      box-shadow: 0 0 30px rgba(255,255,255,0.1);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
-    .hotspot {
-      position: absolute;
-      width: 40px;
-      height: 40px;
-      cursor: pointer;
-      border-radius: 50%;
-      background-color: rgba(255,255,255,0.02);
-      transition: background-color 0.3s ease;
-    }
-
-    .hotspot:hover {
-      background-color: rgba(255,255,255,0.08);
-    }
-
-    #message {
-      margin-top: 2em;
-      font-size: 1.2em;
+    .nav {
       text-align: center;
-      display: none;
+      margin-top: 3em;
     }
 
-    #next {
-      display: none;
-      margin-top: 1.5em;
-      font-size: 1em;
-      color: #ffe66d;
-      text-decoration: underline;
-    }
-
-    #next:hover {
+    .nav button {
+      background: #111;
       color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 0.6em 1.5em;
+      margin: 0.5em;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s ease;
     }
 
-    #hint {
-      color: #888;
-      margin: 1em auto 0 auto;
-      font-size: 0.95em;
+    .nav button:hover {
+      background: #444;
+    }
+
+    footer {
       text-align: center;
-    }
-
-    #feedback {
-      color: #f88;
-      margin-top: 1em;
+      margin-top: 4em;
       font-size: 0.9em;
-      display: none;
-      animation: fadeout 2s forwards;
+      color: #aaa;
     }
 
-    @keyframes fadeout {
-      0% { opacity: 1; }
-      90% { opacity: 1; }
-      100% { opacity: 0; }
+    .fade-out {
+      animation: fadeOut 0.4s forwards;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.4s ease-in;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
 </head>
 <body>
 
-  <h1 style="margin: 1em auto 0.5em auto; font-size: 1.8em;">THE EVELYN CODE — CHAPTER II</h1>
-  <p id="hint">她的思绪藏在发间，静静地听，在光落下的地方 —— 你，找得到吗？</p>
+  <h1>FOR Evelyn</h1>
+  <h3>BY WILSON</h3>
 
-  <div class="image-wrapper">
-    <img src="B2D946E0-330E-473D-A0F8-C5DCEF1B052E.jpeg" alt="Evelyn View" class="evelyn-img">
+  <p>This is a website made by Wilson for Evelyn, My Precious darling Evelyn:</p>
 
-    <!-- 头发顶部 -->
-    <div class="hotspot" data-index="0" style="top: 80px; left: 140px;"></div>
-    <!-- 耳后 -->
-    <div class="hotspot" data-index="1" style="top: 170px; left: 280px;"></div>
-    <!-- 衣角 -->
-    <div class="hotspot" data-index="2" style="top: 480px; left: 200px;"></div>
+  <img src="IMG_9493.JPG" alt="My Precious Darling Evelyn">
+  <img src="IMG_2589.JPG" alt="My Precious Darling Evelyn">
+
+  <p>My Dearest Evelyn, <br>
+  以下是小小回顾，记录下这几天我们不同的时刻。regardless，我很感激这几天认识了你，我也很感恩我们都去了上海，有delay flight，blablaba一连串的东西，只要中间差一环，我们今天就不会相见。</p>
+
+  <div class="nav">
+    <a href="P2.html"><button>下一页</button></a>
   </div>
 
-  <p id="feedback">你太急了，要懂她的节奏。</p>
-  <p id="message">✔️ 你找到了 Evelyn 的节奏：“不是风景动人，是你站在那里让我无法忽视。”</p>
-  <a href="P10.html" id="next">→ 前往下一阶段</a>
 
   <script>
-    const expectedOrder = ['0', '1', '2'];
-    let currentIndex = 0;
-    const feedback = document.getElementById("feedback");
-    const hintText = document.getElementById("hint");
-    let failCount = 0;
-    const hints = [
-      "她最常沉思的地方。",
-      "她听你说话时眼神在哪里？",
-      "靠近她，你最想轻轻靠着哪？"
-    ];
-    let hintIndex = 0;
-
-    document.querySelectorAll('.hotspot').forEach(h => {
-      h.addEventListener('click', () => {
-        if (h.dataset.index === expectedOrder[currentIndex]) {
-          currentIndex++;
-          h.style.backgroundColor = 'rgba(255,255,255,0.2)';
-        } else {
-          currentIndex = 0;
-          failCount++;
-          document.querySelectorAll('.hotspot').forEach(x => x.style.backgroundColor = 'transparent');
-          feedback.textContent = hints[hintIndex];
-          feedback.style.display = 'block';
-          feedback.style.animation = 'fadeout 2s forwards';
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("fade-in");
+      document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function(e) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
+          const url = this.href;
           setTimeout(() => {
-            feedback.style.display = 'none';
-          }, 2000);
-          hintIndex = (hintIndex + 1) % hints.length;
-
-          if (failCount >= 3) {
-            hintText.textContent = "如果她在你面前，你会先注意哪里？";
-          }
-        }
-
-        if (currentIndex === expectedOrder.length) {
-          document.getElementById('message').style.display = 'block';
-          document.getElementById('next').style.display = 'block';
-        }
+            window.location.href = url;
+          }, 400);
+        });
       });
     });
   </script>
-
 </body>
 </html>
