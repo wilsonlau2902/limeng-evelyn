@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>The Evelyn Code - Chapter III</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background-color: #121212;
+      color: #eee;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-top: 1.5em;
+      color: #ffe66d;
+      text-align: center;
+    }
+
+    p {
+      max-width: 600px;
+      text-align: center;
+      font-size: 1.1em;
+      margin: 2em auto;
+      color: #aaa;
+    }
+
+    input[type="text"] {
+      padding: 0.6em 1em;
+      font-size: 1em;
+      border-radius: 10px;
+      border: none;
+      outline: none;
+      width: 260px;
+      margin-bottom: 1em;
+      background-color: #222;
+      color: #fff;
+    }
+
+    button {
+      padding: 0.6em 1.5em;
+      font-size: 1em;
+      background-color: #ffe66d;
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #fff176;
+    }
+
+    #hint {
+      color: #888;
+      font-size: 0.9em;
+      margin-top: 1em;
+    }
+
+    #response {
+      margin-top: 2em;
+      font-size: 1.2em;
+      color: #87f987;
+      display: none;
+    }
+
+    #next {
+      display: none;
+      margin-top: 1em;
+      font-size: 1em;
+      color: #ffe66d;
+      text-decoration: underline;
+    }
+
+    #next:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>THE EVELYN CODE — CHAPTER III</h1>
+  <p>密室第三道門：只有真正了解 Evelyn 的人，才知道這句話的密碼。</p>
+
+  <input type="text" id="password" placeholder="輸入密語...">
+  <button onclick="checkPassword()">驗證</button>
+
+  <div id="hint">提示：是我們之間只有你和我知道的那句「很小、很怪、但只有你懂」的話 💬</div>
+
+  <div id="response">✔️ 正確！這句話就是只屬於我們的暗號。</div>
+  <a href="P11.html" id="next">→ 前往下一章節</a>
+
+  <script>
+    const correct = ["你有毒吧", "有毒吧", "哇晒", "什么啊", "宝宝"];
+    function checkPassword() {
+      const input = document.getElementById("password").value.trim();
+      if (correct.includes(input)) {
+        document.getElementById("response").style.display = 'block';
+        document.getElementById("next").style.display = 'inline-block';
+      } else {
+        alert("這句話不對喔～再想想 🧠");
+      }
+    }
+  </script>
+</body>
+</html>
