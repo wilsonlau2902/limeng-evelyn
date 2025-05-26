@@ -37,7 +37,7 @@
 
     img {
       display: block;
-      max-width: 90%;
+      max-width: 500px;
       height: auto;
       margin: 2em auto;
       border-radius: 10px;
@@ -71,27 +71,60 @@
       font-size: 0.9em;
       color: #aaa;
     }
+
+    .fade-out {
+      animation: fadeOut 0.4s forwards;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.4s ease-in;
+    }
+
+    @keyframes fadeOut {
+      to { opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
   </style>
 </head>
 <body>
 
-  <h1>For Evelyn 💗</h1>
-  <h3>By Wilson</h3>
+  <h1>FOR Evelyn</h1>
+  <h3>BY WILSON</h3>
 
-  <p>以下是小小回顾，记录下我们短短几天的特别时刻。<br>
-    无论中间哪一个环节不一样，我们也许就不会相遇了。<br><br>
-    感谢命运让我遇见你。💫</p>
+  <p>This is a website made by Wilson for Evelyn, My Precious darling Evelyn:</p>
 
-  <img src="IMG_9493.JPG" alt="Evelyn smiling beautifully">
-  <img src="IMG_2589.JPG" alt="Evelyn with a calm gaze">
+  <img src="IMG_9493.JPG" alt="My Precious Darling Evelyn">
+  <img src="IMG_2589.JPG" alt="My Precious Darling Evelyn">
+
+  <p>My Dearest Evelyn, <br>
+  以下是小小回顾，记录下这几天我们不同的时刻。regardless，我很感激这几天认识了你，我也很感恩我们都去了上海，有delay flight，blablaba一连串的东西，只要中间差一环，我们今天就不会相见。</p>
 
   <div class="nav">
     <a href="P2.html"><button>下一页</button></a>
   </div>
 
   <footer>
-    亲爱的 Evelyn, 你值得世界上一切美好的事物。
+    Evelyn 的专属网站 · 极简风格呈现
   </footer>
 
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      document.body.classList.add("fade-in");
+      document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function(e) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
+          const url = this.href;
+          setTimeout(() => {
+            window.location.href = url;
+          }, 400);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
