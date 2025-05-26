@@ -17,6 +17,7 @@
       justify-content: flex-start;
       min-height: 100vh;
       overflow-x: hidden;
+      transition: background-color 0.3s ease;
     }
 
     h1 {
@@ -46,7 +47,32 @@
     }
 
     input[type="range"] {
+      -webkit-appearance: none;
       width: 250px;
+      height: 6px;
+      background: #444;
+      border-radius: 4px;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 16px;
+      height: 16px;
+      background: #ffe66d;
+      cursor: pointer;
+      border-radius: 50%;
+      border: 2px solid #222;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 16px;
+      height: 16px;
+      background: #ffe66d;
+      cursor: pointer;
+      border-radius: 50%;
+      border: 2px solid #222;
     }
 
     #sentence {
@@ -143,8 +169,13 @@
 
     confirmBtn.addEventListener('click', () => {
       if (slider1.value === '1' && slider2.value === '1' && slider3.value === '1') {
+        sentence.textContent = sentenceBank[2];
         result.style.display = 'block';
         next.style.display = 'inline-block';
+        document.body.style.backgroundColor = '#1a1a1a';
+        setTimeout(() => {
+          document.body.style.backgroundColor = '#0d0d0d';
+        }, 200);
       } else {
         sentence.textContent = "语言重构失败，尝试其他组合...";
         result.style.display = 'none';
