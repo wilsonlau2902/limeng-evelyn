@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>The Evelyn Code</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      background: #0f0f0f;
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #ffe66d;
+      font-size: 2.2em;
+      margin-bottom: 1em;
+      letter-spacing: 2px;
+    }
+
+    .puzzle {
+      display: grid;
+      grid-template-columns: repeat(5, 60px);
+      gap: 1em;
+      margin: 2em 0;
+    }
+
+    .letter {
+      width: 60px;
+      height: 60px;
+      background: #222;
+      color: #222;
+      font-size: 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid #333;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .letter.revealed {
+      color: #ffe66d;
+      border-color: #ffe66d;
+      background: #1e1e1e;
+    }
+
+    #message {
+      margin-top: 2em;
+      font-size: 1.2em;
+      color: #999;
+      max-width: 600px;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    a.secret-link {
+      display: none;
+      margin-top: 2em;
+      font-size: 1.1em;
+      color: #ffe66d;
+      text-decoration: underline;
+    }
+
+    a.secret-link:hover {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>The Evelyn Code</h1>
+
+  <div class="puzzle" id="puzzle">
+    <!-- Hidden phrase: 你以为这只是个网页，其实是我设计的密室 -->
+    <div class="letter" data-letter="你">?</div>
+    <div class="letter" data-letter="以">?</div>
+    <div class="letter" data-letter="为">?</div>
+    <div class="letter" data-letter="这">?</div>
+    <div class="letter" data-letter="只">?</div>
+    <div class="letter" data-letter="是">?</div>
+    <div class="letter" data-letter="个">?</div>
+    <div class="letter" data-letter="网">?</div>
+    <div class="letter" data-letter="页">?</div>
+    <div class="letter" data-letter="，">?</div>
+    <div class="letter" data-letter="其">?</div>
+    <div class="letter" data-letter="实">?</div>
+    <div class="letter" data-letter="是">?</div>
+    <div class="letter" data-letter="我">?</div>
+    <div class="letter" data-letter="设">?</div>
+    <div class="letter" data-letter="计">?</div>
+    <div class="letter" data-letter="的">?</div>
+    <div class="letter" data-letter="密">?</div>
+    <div class="letter" data-letter="室">?</div>
+  </div>
+
+  <p id="message">点亮每一个字，看看这个网页真正的秘密。</p>
+
+  <a id="secretLink" href="P9.html" class="secret-link">进入下一阶段 →</a>
+
+  <script>
+    const letters = document.querySelectorAll('.letter');
+    let revealed = 0;
+    const total = letters.length;
+
+    letters.forEach(el => {
+      el.addEventListener('click', () => {
+        if (!el.classList.contains('revealed')) {
+          el.classList.add('revealed');
+          el.textContent = el.dataset.letter;
+          revealed++;
+        }
+        if (revealed === total) {
+          document.getElementById('message').textContent = '你成功破译了 Evelyn 的秘密，这不仅是网页，是一场关于心意的解谜游戏。';
+          document.getElementById('secretLink').style.display = 'inline-block';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
