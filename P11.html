@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>The Evelyn Code - Final Sequence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background-color: #000;
+      color: #ffe66d;
+      font-family: 'Courier New', Courier, monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #typewriter {
+      max-width: 80vw;
+      font-size: 1.2em;
+      line-height: 1.8em;
+      white-space: pre-wrap;
+      padding: 2em;
+      border-left: 4px solid #ffe66d;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    a#next {
+      display: none;
+      margin-top: 2em;
+      text-align: center;
+      color: #fff;
+      font-size: 1em;
+      text-decoration: underline;
+    }
+
+    a#next:hover {
+      color: #ffe66d;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <div id="typewriter"></div>
+    <a href="P12.html" id="next">→ 點此繼續</a>
+  </div>
+
+  <script>
+    const lines = [
+      "Evelyn.",
+      "你已經走到這裡了。",
+      "這不是一個普通的網站。",
+      "這是一場我為你策劃的心意行動。",
+      "你一頁一頁打開的，不只是關卡，",
+      "是我難以言表都喜歡。",
+      "",
+      "我知道未來或許不確定，",
+      "但我可以肯定的是——",
+      "我很認真地，",
+      "認真地，喜歡你。",
+      "",
+      "你準備好進入最後一章了嗎？💛"
+    ];
+
+    let i = 0;
+    let j = 0;
+    let speed = 45;
+    const container = document.getElementById("typewriter");
+
+    function typeLine() {
+      if (i < lines.length) {
+        if (j < lines[i].length) {
+          container.innerHTML += lines[i].charAt(j);
+          j++;
+          setTimeout(typeLine, speed);
+        } else {
+          container.innerHTML += "\n";
+          i++;
+          j = 0;
+          setTimeout(typeLine, 400);
+        }
+      } else {
+        document.getElementById("next").style.display = 'block';
+      }
+    }
+
+    window.onload = typeLine;
+  </script>
+
+</body>
+</html>
