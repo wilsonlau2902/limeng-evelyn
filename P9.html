@@ -30,16 +30,16 @@
 
     .hotspot {
       position: absolute;
-      width: 40px;
-      height: 40px;
+      width: 80px;
+      height: 80px;
       cursor: pointer;
       border-radius: 50%;
-      background-color: rgba(255,255,255,0.02);
+      background-color: rgba(255,255,255,0.1);
       transition: background-color 0.3s ease;
     }
 
     .hotspot:hover {
-      background-color: rgba(255,255,255,0.08);
+      background-color: rgba(255,255,255,0.3);
     }
 
     #message {
@@ -86,61 +86,42 @@
 <body>
 
   <h1 style="margin: 1em auto 0.5em auto; font-size: 1.8em;">THE EVELYN CODE — CHAPTER II</h1>
-  <p id="hint">她的思绪藏在发间，静静地听，在光落下的地方 —— 你，找得到吗？</p>
+  <p id="hint">提示：点击图中的 3 个发光点即可继续～不需要顺序哦 💡</p>
 
   <div class="image-wrapper">
     <img src="B2D946E0-330E-473D-A0F8-C5DCEF1B052E.jpeg" alt="Evelyn View" class="evelyn-img">
 
     <!-- 头发顶部 -->
-    <div class="hotspot" data-index="0" style="top: 80px; left: 140px;"></div>
+    <div class="hotspot" data-index="0" style="top: 15%; left: 20%;"></div>
     <!-- 耳后 -->
-    <div class="hotspot" data-index="1" style="top: 170px; left: 280px;"></div>
+    <div class="hotspot" data-index="1" style="top: 38%; left: 55%;"></div>
     <!-- 衣角 -->
-    <div class="hotspot" data-index="2" style="top: 480px; left: 200px;"></div>
+    <div class="hotspot" data-index="2" style="top: 78%; left: 40%;"></div>
   </div>
 
-  <p id="feedback">你太急了，要懂她的节奏。</p>
-  <p id="message">✔️ 你找到了 Evelyn 的节奏：“不是风景动人，是你站在那里让我无法忽视。”</p>
+  <p id="feedback">继续找，点亮全部三个点！✨</p>
+  <p id="message">✔️ 太棒了，你找到 Evelyn 的节奏：“不是风景动人，是你站在那里让我无法忽视。”</p>
   <a href="P10.html" id="next">→ 前往下一阶段</a>
 
   <script>
-    const expectedOrder = ['0', '1', '2'];
-    let currentIndex = 0;
+    const totalToClick = 3;
+    let clickedSet = new Set();
     const feedback = document.getElementById("feedback");
     const hintText = document.getElementById("hint");
-    let failCount = 0;
-    const hints = [
-      "她最常沉思的地方。",
-      "她听你说话时眼神在哪里？",
-      "靠近她，你最想轻轻靠着哪？"
-    ];
-    let hintIndex = 0;
 
     document.querySelectorAll('.hotspot').forEach(h => {
       h.addEventListener('click', () => {
-        if (h.dataset.index === expectedOrder[currentIndex]) {
-          currentIndex++;
-          h.style.backgroundColor = 'rgba(255,255,255,0.2)';
-        } else {
-          currentIndex = 0;
-          failCount++;
-          document.querySelectorAll('.hotspot').forEach(x => x.style.backgroundColor = 'transparent');
-          feedback.textContent = hints[hintIndex];
-          feedback.style.display = 'block';
-          feedback.style.animation = 'fadeout 2s forwards';
-          setTimeout(() => {
-            feedback.style.display = 'none';
-          }, 2000);
-          hintIndex = (hintIndex + 1) % hints.length;
+        h.style.backgroundColor = 'rgba(255,255,255,0.4)';
+        clickedSet.add(h.dataset.index);
 
-          if (failCount >= 3) {
-            hintText.textContent = "如果她在你面前，你会先注意哪里？";
-          }
-        }
+        feedback.style.display = 'block';
+        feedback.textContent = `已激活 ${clickedSet.size} / ${totalToClick}`;
 
-        if (currentIndex === expectedOrder.length) {
+        if (clickedSet.size === totalToClick) {
           document.getElementById('message').style.display = 'block';
           document.getElementById('next').style.display = 'block';
+          feedback.style.display = 'none';
+          hintText.textContent = "你完成了这个章节！继续前进吧～";
         }
       });
     });
