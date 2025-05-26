@@ -1,44 +1,97 @@
-<style>
-button{color: white;
-background-color: black;
-width: 100;
-height: 30px;
-border-radius:30px;
-border-style:none;
-cursor:pointer;}
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>For Evelyn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: #f9f9f9;
+      color: #111;
+      line-height: 1.6;
+    }
 
-button:hover{background-color: rgb(142, 141, 141);}
+    h1, h2, h3 {
+      font-weight: 400;
+      text-align: center;
+    }
 
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 0.2em;
+    }
 
-.first{background-color: black;}
-.next{background-color: white;
-color: black;
-border-style:solid;}
-.last{background-color: rgb(220, 220, 220);
-color: black;
-border-style:none;}
+    h3 {
+      font-weight: 300;
+      color: #666;
+    }
 
-</style>
+    p {
+      max-width: 700px;
+      margin: 2em auto;
+      text-align: center;
+    }
 
-<h1> FOR Evelyn</h1>
-<h3> BY WILSON</h3><hr/>
-<h2> Purpose: </h2>
+    img {
+      display: block;
+      max-width: 90%;
+      height: auto;
+      margin: 2em auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
 
+    .nav {
+      text-align: center;
+      margin-top: 3em;
+    }
 
-<p>This is a website made by Wilson for Evelyn, My Precious darling Evelyn:<br/>
-    <img src="IMG_9493.JPG" alt="My Precious Darling Evelyn" width="360" height="460"></br></br>
+    .nav button {
+      background: #111;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      padding: 0.6em 1.5em;
+      margin: 0.5em;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
 
-    <img src="IMG_2589.JPG" alt="My Precious Darling Evelyn" width="360" height="460"></br></br>
-    My Dearest Evelyn, 
-    
-    以下是小小回顾，记录下这几天我们不同的时刻。regardless，我很感激这几天认识了你，我也很感恩我们都去了上海，有delay flight，blablaba一连串的东西，只要中间差一环，我们今天就不会相见。</br>
-    请按下一页宝贝 ->
-<br/>
+    .nav button:hover {
+      background: #444;
+    }
 
-</p>
+    footer {
+      text-align: center;
+      margin-top: 4em;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
 
+  <h1>For Evelyn 💗</h1>
+  <h3>By Wilson</h3>
 
-<!-- next page -->
-<a href="index.html"> <button class ="first">第一页</button></a>
-<a href="P2.html"> <button class ="next">下一页</button></a>
-<a href="P4.html"> <button class ="last">最后一页</button></a>
+  <p>以下是小小回顾，记录下我们短短几天的特别时刻。<br>
+    无论中间哪一个环节不一样，我们也许就不会相遇了。<br><br>
+    感谢命运让我遇见你。💫</p>
+
+  <img src="IMG_9493.JPG" alt="Evelyn smiling beautifully">
+  <img src="IMG_2589.JPG" alt="Evelyn with a calm gaze">
+
+  <div class="nav">
+    <a href="P2.html"><button>下一页</button></a>
+  </div>
+
+  <footer>
+    亲爱的 Evelyn, 你值得世界上一切美好的事物。
+  </footer>
+
+</body>
+</html>
