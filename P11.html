@@ -2,98 +2,157 @@
 <html lang="zh">
 <head>
   <meta charset="UTF-8">
-  <title>The Evelyn Code - Final Sequence</title>
+  <title>The Evelyn Code - Chapter XI: 重构机</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: #000;
-      color: #ffe66d;
+    body {
+      background-color: #0d0d0d;
+      color: #eee;
       font-family: 'Courier New', Courier, monospace;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    #typewriter {
-      max-width: 80vw;
-      font-size: 1.2em;
-      line-height: 1.8em;
-      white-space: pre-wrap;
+      margin: 0;
       padding: 2em;
-      border-left: 4px solid #ffe66d;
-      animation: fadeIn 1s ease-in;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 100vh;
+      overflow-x: hidden;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    a#next {
-      display: none;
-      margin-top: 2em;
+    h1 {
+      margin-bottom: 0.5em;
+      color: #ffe66d;
+      font-size: 1.6em;
       text-align: center;
-      color: #fff;
+    }
+
+    .slider-container {
+      margin: 2em 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+
+    .slider {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .slider label {
+      margin-bottom: 0.3em;
+      font-size: 0.95em;
+      color: #aaa;
+    }
+
+    input[type="range"] {
+      width: 250px;
+    }
+
+    #sentence {
+      margin-top: 3em;
+      font-size: 1.1em;
+      color: #ccc;
+      text-align: center;
+      min-height: 4em;
+    }
+
+    #confirm {
+      margin-top: 2em;
+      padding: 0.6em 1.5em;
       font-size: 1em;
+      background-color: #ffe66d;
+      color: #000;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 2em;
+      font-size: 1.1em;
+      color: #87f987;
+      display: none;
+      text-align: center;
+    }
+
+    #next {
+      display: none;
+      margin-top: 1.5em;
+      font-size: 1em;
+      color: #ffe66d;
       text-decoration: underline;
     }
 
-    a#next:hover {
-      color: #ffe66d;
+    #next:hover {
+      color: white;
     }
   </style>
 </head>
 <body>
+  <h1>THE EVELYN CODE — CHAPTER XI</h1>
+  <p style="text-align:center; color:#777; font-size:0.95em">系统记忆碎片混乱。请调节三项参数，以尝试重构原始语言结构。</p>
 
-  <div>
-    <div id="typewriter"></div>
-    <a href="P12.html" id="next">→ 点击继续</a>
+  <div class="slider-container">
+    <div class="slider">
+      <label for="slider1">语序结构</label>
+      <input type="range" id="slider1" min="0" max="4" step="1" value="0">
+    </div>
+    <div class="slider">
+      <label for="slider2">语言节奏</label>
+      <input type="range" id="slider2" min="0" max="4" step="1" value="0">
+    </div>
+    <div class="slider">
+      <label for="slider3">情感强度</label>
+      <input type="range" id="slider3" min="0" max="4" step="1" value="0">
+    </div>
   </div>
 
+  <div id="sentence">&nbsp;</div>
+  <button id="confirm">尝试重构</button>
+
+  <div id="result">✅ 记忆语言成功重建：“每一张照片，都是我眼中的风景。”</div>
+  <a href="P12.html" id="next">→ 前往最终章节</a>
+
   <script>
-    const lines = [
-      "Evelyn.",
-      "你已经走到这里了。",
-      "这不是一个普通的网站。",
-      "这是一场我为你策划的心意行动。",
-      "你一页一页打开的，不只是关卡，",
-      "是我难以言表的喜欢。",
-      "",
-      "我知道未来或许不确定，",
-      "但我可以肯定的是——",
-      "我很认真地，",
-      "认真地，喜欢你。",
-      "",
-      "你准备好进入最后一章了吗？💛"
+    const slider1 = document.getElementById('slider1');
+    const slider2 = document.getElementById('slider2');
+    const slider3 = document.getElementById('slider3');
+    const sentence = document.getElementById('sentence');
+    const confirmBtn = document.getElementById('confirm');
+    const result = document.getElementById('result');
+    const next = document.getElementById('next');
+
+    const sentenceBank = [
+      "每一张笑容，都是我心中最温柔的收藏。",
+      "每一次相遇，都是命运最温柔的安排。",
+      "每一张照片，都是我眼中的风景。",
+      "如果你也正在回忆，那我们在想的也许是同一个画面。",
+      "但有时人生的下一页，不在网页里，而在你我心里。",
+      "爱是行动，不只是话语。❤️"
     ];
 
-    let i = 0;
-    let j = 0;
-    let speed = 45;
-    const container = document.getElementById("typewriter");
-
-    function typeLine() {
-      if (i < lines.length) {
-        if (j < lines[i].length) {
-          container.innerHTML += lines[i].charAt(j);
-          j++;
-          setTimeout(typeLine, speed);
-        } else {
-          container.innerHTML += "\n";
-          i++;
-          j = 0;
-          setTimeout(typeLine, 400);
-        }
-      } else {
-        document.getElementById("next").style.display = 'block';
-      }
+    function generateSentence() {
+      const idx = (parseInt(slider1.value) + parseInt(slider2.value) + parseInt(slider3.value)) % sentenceBank.length;
+      sentence.textContent = sentenceBank[idx];
     }
 
-    window.onload = typeLine;
-  </script>
+    slider1.addEventListener('input', generateSentence);
+    slider2.addEventListener('input', generateSentence);
+    slider3.addEventListener('input', generateSentence);
 
+    confirmBtn.addEventListener('click', () => {
+      if (slider1.value === '1' && slider2.value === '1' && slider3.value === '1') {
+        result.style.display = 'block';
+        next.style.display = 'inline-block';
+      } else {
+        sentence.textContent = "语言重构失败，尝试其他组合...";
+        result.style.display = 'none';
+        next.style.display = 'none';
+      }
+    });
+
+    generateSentence();
+  </script>
 </body>
 </html>
