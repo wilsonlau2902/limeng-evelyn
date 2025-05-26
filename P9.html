@@ -30,16 +30,17 @@
 
     .hotspot {
       position: absolute;
-      width: 80px;
-      height: 80px;
+      width: 36px;
+      height: 36px;
       cursor: pointer;
       border-radius: 50%;
-      background-color: rgba(255,255,255,0.1);
-      transition: background-color 0.3s ease;
+      background-color: rgba(255,255,255,0.08);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .hotspot:hover {
       background-color: rgba(255,255,255,0.3);
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
     }
 
     #message {
@@ -66,6 +67,7 @@
       margin: 1em auto 0 auto;
       font-size: 0.95em;
       text-align: center;
+      display: none;
     }
 
     #feedback {
@@ -86,7 +88,7 @@
 <body>
 
   <h1 style="margin: 1em auto 0.5em auto; font-size: 1.8em;">THE EVELYN CODE — CHAPTER II</h1>
-  <p id="hint">提示：点击图中的 3 个发光点即可继续～不需要顺序哦 💡</p>
+  <p id="hint"></p>
 
   <div class="image-wrapper">
     <img src="B2D946E0-330E-473D-A0F8-C5DCEF1B052E.jpeg" alt="Evelyn View" class="evelyn-img">
@@ -106,6 +108,7 @@
   <script>
     const totalToClick = 3;
     let clickedSet = new Set();
+    let hintShown = false;
     const feedback = document.getElementById("feedback");
     const hintText = document.getElementById("hint");
 
@@ -116,6 +119,12 @@
 
         feedback.style.display = 'block';
         feedback.textContent = `已激活 ${clickedSet.size} / ${totalToClick}`;
+
+        if (clickedSet.size >= 1 && !hintShown) {
+          hintText.style.display = 'block';
+          hintText.textContent = "提示：图中共有三个可点亮的区域，无需顺序哦 💡";
+          hintShown = true;
+        }
 
         if (clickedSet.size === totalToClick) {
           document.getElementById('message').style.display = 'block';
